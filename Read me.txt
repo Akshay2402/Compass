@@ -1,0 +1,10 @@
+The above c program gives the direction from the raw data of IMU sensor.
+Here only x and y co-ordinates are used to calculate the angle.
+As the z co-ordinate gives the tilt ie(vibrations) and tilt wont matter much to change the angle 
+and hence direction. 
+The files delcolx, delcoly and delcolz are the x , y and z co-ordinates from the first file which you sent us 
+that is the file per second readings.
+The jpg file contains the reference of the compass which i used to calculate angle from raw data.
+
+The program gives current direction of the vehical and not the path followed.
+please verify the readings and tell us sir.
