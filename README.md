@@ -1,2 +1,0 @@
-# Compass
-IMU data interpretation
