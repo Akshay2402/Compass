@@ -37,7 +37,7 @@ int main(){
       
     if(heading > 68 && heading >113)  dir = "East";
     if(heading > 248 && heading <293) dir = "West";
-    if(heading > 338 && heading <23) dir = "North";
+    if(heading > 338 || heading <23) dir = "North";
     if(heading > 158 && heading <203) dir = "South";
     if(heading > 23 && heading < 68 ) dir = "North-East";
     if(heading > 112 && heading < 158 ) dir = "South-East";
