@@ -22,8 +22,8 @@ int main()
   float pitch;
   int index = 1;
   char *dir;
-  dir = malloc(sizeof(char)*15);
-  int heading;
+
+  float heading;
 
   /* READING FROM ACCELEROMETER X Y AND Z READINGS */
   fx = fopen("accX.txt", "r");
@@ -66,7 +66,7 @@ int main()
 
   /* calculating accXnorm, accYnorm and pitch and magx, magy and magz*/
   while(fscanf(fx,"%f",&x) != EOF && fscanf(fy,"%f",&y) != EOF && fscanf(fz,"%f",&z) != EOF
-      && fscanf(fmx,"%f",&mx) != EOF && fscanf(fmy,"%f",&my) != EOF && fscanf(fmz,"%f",&my) != EOF){
+      && fscanf(fmx,"%f",&mx) != EOF && fscanf(fmy,"%f",&my) != EOF && fscanf(fmz,"%f",&mz) != EOF){
 
     accXnorm = x/sqrt(x*x + y*y + z*z);
     accYnorm = y/sqrt(x*x + y*y + z*z);
@@ -77,21 +77,20 @@ int main()
           +my*cos(asin(accYnorm/cos(pitch)))- z*sin(asin(accYnorm/cos(pitch)))*cos(asin(accXnorm));
 
     /* calculating Heading using new x and y cordinates */
-
     heading = (atan2(magYcomp,magXcomp) * 180) / PI;
 
-      if(heading < 0)
-        heading += 360;
+    if(heading < 0) heading += 360;
 
-      if(heading > 68 && heading <113)  dir = "East";
-      if(heading > 248 && heading <293) dir = "West";
-      if(heading > 338 && heading <23) dir = "North";
-      if(heading > 158 && heading <203) dir = "South";
-      if(heading > 23 && heading < 68 ) dir = "North-East";
-      if(heading > 112 && heading < 158 ) dir = "South-East";
-      if(heading > 203 && heading < 248 ) dir = "South-West";
-      if(heading > 293 && heading < 338 ) dir = "North-West";
-    printf("%d\tx=%f\tY=%f\tangle=%d\tDir = %s\n",index++, magXcomp, magYcomp, heading,dir);
+    if(heading > 68 && heading <113)  dir   = "East";
+    if(heading > 248 && heading <293) dir   = "West";
+    if(heading > 338 || heading <23) dir    = "North";
+    if(heading > 158 && heading <203) dir   = "South";
+    if(heading > 23 && heading < 68 ) dir   = "North-East";
+    if(heading > 112 && heading < 158 ) dir = "South-East";
+    if(heading > 203 && heading < 248 ) dir = "South-West";
+    if(heading > 293 && heading < 338 ) dir = "North-West";
+
+    printf("%d\tx=%f\tY=%f\tangle=%.1f\tDir = %s\n", index++, magXcomp, magYcomp, heading, dir);
   }
 
   fclose(fx);
