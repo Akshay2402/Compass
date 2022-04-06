@@ -15,7 +15,7 @@
   "paths": {
     "/akshays": {
       "get": {
-        "summary": "Details about a user",
+        "summary": "Details about a user - updated by AKshay Sharma",
         "operationId": "listUser",
         "tags": [
           "user"
